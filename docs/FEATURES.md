@@ -1,70 +1,164 @@
 # Feature Overview
 
-Phoenix AI Desktop is an evolving local-first AI environment. Availability varies by release, and experimental features may change before a stable public source release.
+Phoenix AI Desktop is a local-first AI assistant and agent platform. The current integrated baseline is **v0.15.0a**.
 
-## Core desktop assistant
+## Intelligence Core
 
-Phoenix provides a desktop interface for conversational AI with support for local-first workflows and multiple model backends.
+Phoenix Intelligence Core connects reasoning, memory, project context, tools, permissions, and execution through one bounded runtime.
 
-## Local model support
+Current tool families include:
 
-Phoenix is designed to work with local inference systems and locally hosted models. Model routing and fallback behavior may vary by build.
+- persistent memory search/save/reflection
+- project and working-directory inspection
+- process attach/status/monitor/modules/detach
+- Script Runner
+- PowerShell
+- Command Prompt
+- Bash where available
+- Windows Registry read/write
+- Windows Event Log / system-log queries
+- model, Cortex, and research workflows
+
+High-impact tools remain permission gated.
+
+## Local model runtime
+
+Phoenix supports:
+
+- **Ollama** for Chat, ReAct, Vision, embeddings, RAG, and specialist models
+- **KoboldCpp** for local GGUF Chat and ReAct workloads
+- optional automatic fallback from KoboldCpp to Ollama when the selected runtime is unavailable
+
+## ReAct agent
+
+Phoenix can perform bounded multi-step work using a perceive/plan/act/observe/revise loop.
+
+The runtime preserves:
+
+- hard action budgets
+- failure guards
+- permission checks
+- approval boundaries
+- task state
+- activity history
+- operator interruption
+
+## Terminal integration
+
+Permission-controlled terminal tooling includes:
+
+- PowerShell
+- cmd.exe
+- Bash where available
+
+Phoenix captures command output and can use it during project diagnostics, builds, verification, and approved repair tasks.
 
 ## Persistent memory
 
-Phoenix includes long-term memory capabilities intended to preserve useful project and conversational context across sessions.
+Phoenix maintains local persistent memory for useful project context, operator-requested facts, preferences, decisions, and session continuity.
 
-Memory data is local/user-controlled and should never be committed to this repository.
+## Hindsight
 
-## Project and document knowledge
+Hindsight provides optional experience-memory reflection across prior observations, attempts, failures, and successful approaches.
 
-Phoenix can work with project files, documents, PDFs, and workspace context to support longer-running tasks.
+Phoenix can manage a local Hindsight sidecar and retain normal local memory as a fail-open fallback.
 
-## Voice
+## Cortex
 
-Phoenix includes voice-oriented capabilities such as speech input and spoken responses where enabled and supported by the local environment.
+Cortex adds structured continuity for:
 
-## Tools and scripts
-
-Phoenix can use tools and execute approved workflows. Permission controls are an important part of the design: higher-impact actions should remain gated according to the configured operating mode.
-
-## Cortex and continuity
-
-Phoenix development includes a persistent reasoning/continuity layer intended to track decisions, outcomes, unresolved questions, project state, and knowledge gaps over time.
-
-## Controlled curiosity
-
-Research and curiosity workflows are designed to let Phoenix identify useful questions or research opportunities while preserving user control over execution.
+- observations
+- evidence
+- confidence
+- contradictions
+- outcomes
+- decisions
+- unresolved questions
+- knowledge gaps
 
 ## Model Council
 
-Phoenix can incorporate multiple models into a structured reasoning workflow so that different model perspectives can be compared before producing a result or taking an approved action.
+Phoenix can consult several installed local models for uncertain or contradictory problems.
 
-## Project V integrations
+Council results are advisory and do not override execution policy.
 
-Phoenix is designed to interoperate with other Project V applications where appropriate, including monitoring, security, analysis, and research-oriented tools.
+## Knowledge Gap Map and Curiosity
 
-## Live Execution Console and operational observability
+Phoenix can explicitly represent unresolved knowledge gaps and turn them into bounded investigations.
 
-Phoenix includes a real-time **Execution Console** for structured operational telemetry. The console is designed to show what Phoenix is doing without exposing private chain-of-thought.
+Curiosity modes include:
 
-Visible runtime events can include:
+- Passive Curiosity
+- Investigation Planner
+- Controlled Curiosity
+- Autonomous Curiosity / Idle Research
 
-- ReAct task start, completion, and cancellation
-- Project and tool command execution
-- Approval-required states and approval boundaries
-- Command output and verification results
-- Memory/Hindsight preflight and retrieval stages
-- Cortex continuity lookups
-- Model Council start/completion and assessment count
-- Safe-boundary cancellation behavior
-- Subsystem readiness for Memory, Hindsight, Dream Lab, and Cortex
-- Timestamped Phoenix Activity Ledger entries
+Idle research is constrained by configurable thresholds, per-day investigation limits, time budgets, relevance scoring, and the ordinary Phoenix permission model.
 
-The console also provides live refresh, auto-scroll, copy/clear controls, task inspection, and recent-activity history.
+## Vision
 
-Model Council telemetry is advisory only and does not independently authorize actions. Permission policy remains authoritative for execution.
+Phoenix Vision supports local image analysis and explicit screen captures through a locally hosted multimodal model.
 
-## Experimental capabilities
+## Voice
 
-Some capabilities are research-stage and may not be present in every distributed build. Release notes are the authoritative source for what is included in a particular executable.
+Phoenix supports local speech recognition, spoken responses, Live Voice, and request interruption during the thinking phase.
+
+## Stop Thinking
+
+v0.15.0a introduces safe request-scoped cancellation through **Stop thinking** and **Escape**.
+
+Cancellation covers Chat, ReAct/planner reasoning, Model Council, Hindsight reflection, local generation, and local vision reasoning.
+
+Already-started atomic tool actions are allowed to complete to a safe boundary before later reasoning is cancelled.
+
+## Process intelligence
+
+Phoenix can attach context to an explicit PID and perform read-oriented inspection including:
+
+- CPU and memory snapshot
+- handles and threads
+- executable metadata
+- network connections
+- loaded modules
+- bounded monitoring
+
+## Project and document knowledge
+
+Phoenix supports project/workspace context, documents, PDFs, Library/RAG workflows, and semantic retrieval.
+
+## Phoenix ↔ Watchtower
+
+Phoenix can receive structured Project V // Watchtower context for conversational follow-up and related analysis.
+
+## Live Execution Console
+
+The Execution Console surfaces operational telemetry without exposing private chain-of-thought.
+
+It can show:
+
+- ReAct lifecycle events
+- command/tool execution
+- approvals
+- command output
+- Memory/Hindsight stages
+- Cortex activity
+- Model Council activity
+- cancellation and safe-stop events
+- verification results
+- Phoenix Activity Ledger history
+
+## Toolsmith, Skill Forge, and Evolution
+
+Current Phoenix builds retain these intelligence-development subsystem surfaces alongside Memory, Hindsight, and Cortex.
+
+## Permissions and safety
+
+Phoenix's core rule is that context does not equal authority.
+
+Memory, Hindsight, Cortex, Model Council, and Curiosity cannot independently grant permission to execute higher-impact actions.
+
+Tool permissions, approval requirements, UAC/elevation boundaries, destructive-action controls, and protocol safeguards remain authoritative.
+
+## Current status
+
+The v0.15.0a feature baseline is integrated. Current work focuses on regression stability, ReAct/planner reliability, autonomous TypeScript repair validation, and freezing a known-good production baseline.
