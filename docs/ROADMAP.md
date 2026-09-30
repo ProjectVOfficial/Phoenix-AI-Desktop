@@ -2,18 +2,23 @@
 
 This roadmap is intentionally high level. It describes direction rather than promising specific release dates.
 
+## Current production baseline
+
+### Phoenix Desktop v0.15.0a
+
+The integrated Intelligence Core baseline is in place, including terminal tooling, ReAct, Memory/Hindsight, Cortex, Model Council, Curiosity, local model routing, Vision, Voice, Stop Thinking, and operational telemetry.
+
 ## Current phase
 
-### Phoenix Desktop stabilization
+### Stabilization and final validation
 
-- Complete and validate the current Phoenix Desktop feature set
-- Strengthen persistent memory and continuity
-- Finish Cortex/autonomy components
-- Continue controlled research and curiosity workflows
-- Validate model-routing and Model Council behavior
-- Improve interruption and stop controls
-- Complete final regression and repair testing
+- Complete full regression validation against v0.15.0a
+- Finish ReAct/planner reliability repair
+- Run the deliberately broken TypeScript autonomous-repair exam
+- Verify repair → typecheck/build → observation → stop behavior
+- Confirm permissions and approval boundaries remain intact
 - Freeze a known-good production baseline
+- Prepare validated binary release artifacts
 
 ## Research phase
 
@@ -21,7 +26,7 @@ This roadmap is intentionally high level. It describes direction rather than pro
 
 Phoenix Unbound is planned as a separate research branch/environment for studying broader autonomous behavior inside a deliberately isolated sandbox.
 
-It is not intended to replace the stable production Phoenix baseline.
+It is not intended to replace or weaken the stable production Phoenix permission model.
 
 Research goals include:
 
@@ -29,10 +34,10 @@ Research goals include:
 - controlled self-modification
 - tool and workflow creation
 - measurable iteration and rollback
-- model-council review
+- Model Council review
 - strict separation from production data and systems
 
-## Later consideration
+## Later considerations
 
 After the stable and research phases are complete:
 
@@ -42,5 +47,6 @@ After the stable and research phases are complete:
 - expand contribution guidance
 - formalize plugin/tool interfaces
 - continue Project V ecosystem integration
+- evaluate optional security-toolkit integrations such as Ghidra, FFUF, and Eyeballer
 
 The roadmap may change as validation results and safety requirements evolve.
