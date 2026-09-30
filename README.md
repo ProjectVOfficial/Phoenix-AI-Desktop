@@ -21,6 +21,17 @@ Current Phoenix development includes capabilities such as:
 - Local system integrations and diagnostics
 - Portable/local storage options
 - Project V ecosystem integrations
+- Live Execution Console with operational telemetry, approval visibility, safe cancellation events, Memory/Hindsight and Cortex stages, Model Council activity, and a persistent Phoenix Activity Ledger
+
+## Live Execution Console
+
+Phoenix includes a dedicated **Execution Console** for live operational observability. It exposes structured runtime telemetry while Phoenix works without exposing private chain-of-thought.
+
+The console can surface ReAct task starts and completions, project/tool commands, approval boundaries, command output, Memory/Hindsight preflight, Cortex continuity lookups, Model Council activity, cancellation requests, safe-boundary termination, and verification results.
+
+Operator-facing controls include a continuous live stream, auto-scroll, manual refresh, copy/clear controls, task inspection, subsystem readiness indicators, and a timestamped **Phoenix Activity Ledger** for recent intelligence activity.
+
+The purpose of this interface is transparency: operators can see what Phoenix is doing, what required approval, what completed, what was cancelled, and what supporting subsystems participated in the run.
 
 ## Repository policy
 
