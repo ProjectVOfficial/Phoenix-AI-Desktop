@@ -135,17 +135,15 @@ The goal is operator transparency: users can see what Phoenix did, what required
 
 ## Current development stage
 
-**Baseline: Phoenix Desktop v0.15.0a**
+**Known-good repair baseline: Phoenix Desktop v0.15.0a6**
 
-The major integrated feature baseline is in place. Current work is focused on:
+The deliberately broken TypeScript autonomous-repair regression has passed on the a6 baseline: Phoenix diagnosed and repaired the target project, then completed typecheck, build, and tests successfully with **3 passed / 0 failed**, finishing normally in **8/12 actions**.
 
-- final regression testing
-- ReAct/planner reliability
-- autonomous repair validation
-- TypeScript repair testing
-- final stability and production-baseline freezing
+**Current development tail: Phoenix Desktop v0.15.0a7**
 
-The final repair exam is intended to verify that Phoenix can inspect a deliberately broken TypeScript project, identify the defect, make an approved repair, run validation, interpret the result, and stop when the objective is satisfied.
+The a7 Execution Console patch is the current validation target. Remaining work is limited to local install/application of the patch, TypeScript validation, startup smoke testing, a harmless ReAct telemetry run, regression checks, and freezing the final Phoenix 0.15 production baseline.
+
+After that baseline is frozen, the next planned development phase is **Project V // Mnemosyne 0.1 — Fork + API Compatibility**, validating the Project V Hindsight fork as a drop-in Phoenix memory sidecar before any Phoenix-specific memory extensions are enabled.
 
 ## Repository policy
 
