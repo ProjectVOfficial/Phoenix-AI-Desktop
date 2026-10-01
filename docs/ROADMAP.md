@@ -4,82 +4,114 @@ This roadmap is intentionally high level. It describes direction rather than pro
 
 ## Current production baseline
 
-### Phoenix Desktop v0.15.0a
+### Phoenix Desktop v0.15.0a6 — known-good repair baseline
 
-The integrated Intelligence Core baseline is in place, including terminal tooling, ReAct, Memory/Hindsight, Cortex, Model Council, Curiosity, local model routing, Vision, Voice, Stop Thinking, and operational telemetry.
+The integrated Intelligence Core baseline is in place, including terminal tooling, ReAct, Memory/Hindsight, Cortex, Model Council, Curiosity, local model routing, Vision, Voice, Stop Thinking, Toolsmith / Skill Forge / Evolution surfaces, and operational telemetry.
 
-## Current phase
+The autonomous TypeScript repair regression has passed on the 0.15.0a6 baseline:
 
-### Stabilization and final validation
+- Phoenix diagnosed the deliberately broken readiness project
+- repaired the target source
+- typecheck passed
+- build passed
+- tests passed: 3 passed / 0 failed
+- the task completed normally in 8 of 12 available actions
+- the earlier planner-guard / limit-reached regression is considered repaired for this validation case
 
-- Complete full regression validation against v0.15.0a
-- Finish ReAct/planner reliability repair
-- Run the deliberately broken TypeScript autonomous-repair exam
-- Verify repair → typecheck/build → observation → stop behavior
-- Confirm permissions and approval boundaries remain intact
-- Freeze a known-good production baseline
-- Prepare validated binary release artifacts
+The autonomous repair exam is therefore retired as a blocking test for the 0.15.0a6 baseline.
 
-## Planned memory-core phase
+## Current development tail
 
-### Project V // Mnemosyne — Phoenix Memory Core
+### Phoenix Desktop v0.15.0a7 — Execution Console validation
 
-After the v0.15.0a production baseline is frozen, Project V plans to evaluate a Phoenix-specific downstream fork of the Hindsight memory engine.
+The next patch builds on the known-good 0.15.0a6 baseline and extends operator-facing execution telemetry.
 
-The goal is to keep Hindsight's proven retain / recall / reflect foundation and retrieval architecture while adding Phoenix-native semantics, project routing, Cortex integration, provenance, repair-learning, and portable-storage behavior.
+Current validation sequence:
 
-The initial rule is compatibility first: Phoenix should be able to use Mnemosyne as a drop-in local memory sidecar without breaking the current `phoenix-core` bank or existing Hindsight lifecycle controls.
+1. install/apply the 0.15.0a7 Execution Console patch
+2. run Phoenix TypeScript typecheck
+3. start Phoenix and confirm normal startup
+4. run a harmless bounded ReAct task
+5. confirm Execution Console / Phoenix Activity Ledger telemetry is visible and accurate
+6. verify no regression to permissions, approval boundaries, Memory/Hindsight, Cortex, Stop Thinking, or local-model routing
+7. freeze the resulting known-good Phoenix 0.15 production baseline
+8. prepare validated binary/release artifacts
 
-Planned stages include:
+No additional Phoenix feature phase should be inserted ahead of this validation tail unless required by a regression discovered during testing.
 
-- **0.1 — Fork + API compatibility**
-  - preserve existing retain / recall / reflect behavior
-  - keep current Phoenix Hindsight health/lifecycle expectations working
-  - run side-by-side with stock Hindsight for rollback
+## Next development phase
+
+### Project V // Mnemosyne 0.1 — Fork + API Compatibility
+
+**Start only after the Phoenix 0.15 production baseline is frozen.**
+
+Mnemosyne 0.1 is the next planned development phase after the current Phoenix update/build/validation process.
+
+The objective is to prove that the Project V Hindsight fork can operate as a drop-in local memory sidecar for Phoenix without changing Phoenix's production permission model or risking the current `phoenix-core` bank.
+
+#### 0.1 compatibility targets
+
+- preserve Hindsight `retain`
+- preserve Hindsight `recall`
+- preserve Hindsight `reflect`
+- preserve memory-bank handling
+- preserve the current `phoenix-core` bank
+- preserve Phoenix Hindsight health/readiness checks
+- preserve Phoenix-managed local sidecar lifecycle behavior
+- preserve local Ollama-based Hindsight operation where configured
+- preserve backup/export expectations
+- keep stock Hindsight available as a rollback path
+- validate Mnemosyne side-by-side with stock Hindsight before cutover
+
+#### 0.1 Phoenix validation set
+
+Mnemosyne 0.1 should be tested against known Phoenix memory behaviors, including:
+
+- ordinary retain → recall
+- cross-session recall
+- Hindsight reflection
+- Phoenix startup with memory online
+- Phoenix startup with memory unavailable / fail-open behavior
+- current `phoenix-core` bank access
+- Cortex/Hindsight interaction
+- ReAct retrieval of prior experience
+- clean shutdown/restart
+- backup and restore sanity
+- no change to tool authorization or approval behavior
+
+#### 0.1 exit gate
+
+Mnemosyne 0.1 passes only when:
+
+- Phoenix can switch from stock Hindsight to Mnemosyne without an Intelligence Core rewrite
+- known recall/reflect tests are equivalent or better
+- the copied `phoenix-core` data remains intact
+- Phoenix permissions and execution boundaries are unchanged
+- stock Hindsight remains a working rollback option
+
+Only after this gate should Phoenix-specific Mnemosyne behavior begin.
+
+## Mnemosyne follow-on roadmap
+
+After 0.1 compatibility is proven:
 
 - **0.2 — Phoenix metadata schema**
-  - add source, workspace, project, task, session, tool, memory-class, confidence, outcome, verification, and authority metadata
-  - preserve the rule that remembered context never grants execution authority
-
 - **0.3 — Workspace / project bank routing**
-  - support project-scoped memory banks while preserving `phoenix-core`
-  - allow cross-bank recall when a task spans multiple Project V projects
-
 - **0.4 — Cortex-native memory records**
-  - preserve structured beliefs, evidence, contradictions, knowledge gaps, predictions, and outcomes instead of flattening them into ordinary text
-
 - **0.5 — Tool outcome and repair learning**
-  - retain successful fixes, failed attempts, verification commands, and lessons learned
-  - prioritize proven repair patterns during future ReAct tasks
-
 - **0.6 — Provenance + contradiction handling**
-  - attach source paths, tool outputs, timestamps, hashes, and evidence references
-  - retain superseded facts with time/source context instead of silently overwriting them
-
 - **0.7 — Retention and memory scoring**
-  - classify memory as ephemeral, session, time-limited, project, or permanent
-  - score durability, usefulness, confidence, novelty, redundancy, and sensitivity before retention
-
 - **0.8 — Phoenix Memory Core UI**
-  - add Phoenix-native views for memories, projects, lessons, contradictions, Cortex state, backups, and diagnostics
-
 - **0.9 — Migration / backup / portable hardening**
-  - migrate a copy of the current `phoenix-core` bank
-  - validate recall/reflect parity before cutover
-  - honor Phoenix-selected portable/local storage roots
-
 - **1.0 — Stable Phoenix Memory Core**
-  - promote only after side-by-side validation shows equal or better recall with no memory loss
 
-Upstream Hindsight tracking should remain configured so Project V can selectively bring in relevant bug fixes, retrieval improvements, database migrations, performance work, and security fixes.
-
-Project V // Mnemosyne would remain clearly attributed as a downstream Hindsight-derived project and would preserve applicable upstream license notices.
+Project V should continue tracking upstream Hindsight so relevant bug fixes, retrieval improvements, database migrations, performance work, and security fixes can be selectively evaluated and merged.
 
 ## Research phase
 
 ### Phoenix Unbound
 
-Phoenix Unbound is planned as a separate research branch/environment for studying broader autonomous behavior inside a deliberately isolated sandbox.
+Phoenix Unbound remains a separate research branch/environment for studying broader autonomous behavior inside a deliberately isolated sandbox.
 
 It is not intended to replace or weaken the stable production Phoenix permission model.
 
@@ -91,6 +123,8 @@ Research goals include:
 - measurable iteration and rollback
 - Model Council review
 - strict separation from production data and systems
+
+Mnemosyne development should not require weakening Phoenix Unbound or production isolation boundaries.
 
 ## Later considerations
 
