@@ -6,10 +6,15 @@ The repository is currently in binary-distribution mode, so this changelog track
 
 ## Unreleased
 
-- Final regression and repair validation
-- ReAct/planner reliability work
-- Autonomous TypeScript repair exam and verification
-- Production-baseline stabilization
+### 0.15.0a7 — Execution Console validation tail
+
+- 0.15.0a6 retained as the known-good autonomous-repair regression baseline
+- autonomous TypeScript repair exam completed successfully: repair, typecheck, build, and tests passed
+- latest successful repair run completed normally in 8/12 actions with 3 tests passed and 0 failed
+- 0.15.0a7 Execution Console patch prepared on top of the a6 baseline
+- source-side type validation for the a7 patch completed with zero TypeScript errors before local install
+- remaining local validation: apply/install patch, typecheck, startup smoke test, harmless ReAct telemetry run, and final production-baseline freeze
+- after the Phoenix 0.15 baseline is frozen, begin **Project V // Mnemosyne 0.1 — Fork + API Compatibility**
 
 ## 0.15.0a — 2026-09-29
 
